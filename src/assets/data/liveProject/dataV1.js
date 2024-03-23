@@ -1,12 +1,12 @@
 import projectIcon1 from "assets/images/project/ninga-image.png";
 import projectIcon2 from "assets/images/project/ninga-2.png";
 import projectIcon3 from "assets/images/project/ninga-3.png";
-import projectIcon4 from "assets/images/project/ninga-4.png";
+// import projectIcon4 from "assets/images/project/ninga-4.png";
 
 import coinIcon1 from "assets/images/project/icon-2.png";
 import coinIcon2 from "assets/images/project/icon-1.png";
 import coinIcon3 from "assets/images/project/icon-3.png";
-import coinIcon4 from "assets/images/project/icon-4.png";
+// import coinIcon4 from "assets/images/project/icon-4.png";
 const data = [
   {
     projectIcon: projectIcon1,
