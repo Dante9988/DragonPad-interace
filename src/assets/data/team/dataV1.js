@@ -60,12 +60,12 @@ const data = [
   },
   {
     avatar: avatar4,
-    name: "Rio Kanehiro",
+    name: "Justin Wang",
     designation: "CTO",
     socialLinks: [
       {
         icon: <TbBrandLinkedin />,
-        url: "https://www.linkedin.com/in/riokanehiro/",
+        url: "https://www.linkedin.com/in/justin-wang-50a679300/",
       },
       {
         icon: <TbBrandTwitter />,
