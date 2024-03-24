@@ -23,7 +23,7 @@ const PageHeader = ({ currentPage, pageTitle }) => {
           </div>
 
           <div className="col-lg-7">
-            <h3 className="project_timeline">2021 - 2022</h3>
+            <h3 className="project_timeline">2024</h3>
           </div>
         </div>
       </div>
