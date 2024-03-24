@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useModal } from "utils/ModalContext";
 import { MdNotes, MdOutlineKeyboardArrowDown, MdOutlineKeyboardArrowRight } from "react-icons/md";
 import NavWrapper from "./Header.style";
@@ -6,6 +5,8 @@ import Button from "components/button";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import data from "assets/data/menu/menuData";
 import logo from "assets/images/logo.png";
+import React, { useState, useEffect } from "react";
+import { isAccountConnected, onChainChange, removeChainChangeListener } from "../../../lib/metamaskhandler"
 
 import connectIcon from "assets/images/icons/connect.png"
 // import walletIcon1 from "assets/images/icons/pancake.png"
@@ -18,6 +19,28 @@ import connectIcon from "assets/images/icons/connect.png"
 const Header = () => {
   const { walletModalHandle } = useModal();
   const [isMobileMenu, setMobileMenu] = useState(false);
+  const [userAddress, setUserAddress] = useState(false);
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
+  const [isCorrectNetwork, setIsCorrectNetwork] = useState(true);
+
+  useEffect(() => {
+    const checkWalletConnection = async () => {
+      const accounts = await isAccountConnected();
+      if (accounts && accounts.length > 0) {
+        setIsWalletConnected(true);
+        setUserAddress(accounts[0]);
+      }
+    };
+
+    checkWalletConnection();
+  }, []);
+
+  const formatAddress = (address) => `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
+
+  const handleWalletBtn = (e) => {
+    e.preventDefault();
+    walletModalHandle();
+  };
 
   const handleMobileMenu = () => {
     setMobileMenu(!isMobileMenu);
@@ -39,10 +62,10 @@ const Header = () => {
   //   };
   // }, []);
 
-  const handleWalletBtn = (e) => {
-    e.preventDefault();
-    walletModalHandle()
-  }
+  // const handleWalletBtn = (e) => {
+  //   e.preventDefault();
+  //   walletModalHandle()
+  // }
 
   return (
     <NavWrapper className="gamfi_header" id="navbar">
@@ -115,7 +138,7 @@ const Header = () => {
                 onClick={e => handleWalletBtn(e)}
               >
                 <img src={connectIcon} alt="icon" />
-                Connect
+                {isWalletConnected ? formatAddress(userAddress) : 'Connect'}
               </Button>
             </div>
           </div>

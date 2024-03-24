@@ -49,6 +49,8 @@
     ]
   },
   "devDependencies": {
-    "netlify-cli": "^10.16.0"
+    "netlify-cli": "^10.16.0",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.4"
   }
 }

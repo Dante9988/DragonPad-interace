@@ -6,6 +6,11 @@ const ContextProvider = ({ children }) => {
   const [shareModalVisibility, setShareModalvisibility] = useState(false);
   const [metamaskModal, setMetamaskModal] = useState(false);
   const [accounts, setAccounts] = useState(null);
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
+
+  const updateWalletConnectionStatus = (status) => {
+    setIsWalletConnected(status);
+  };
 
   const handleAccountConnect = (acc) => {
     setAccounts(acc);
@@ -35,6 +40,8 @@ const ContextProvider = ({ children }) => {
         metamaskModal,
         handleMetamaskModal,
         handleAccountConnect,
+        updateWalletConnectionStatus,
+        isWalletConnected,
         accounts,
       }}
     >

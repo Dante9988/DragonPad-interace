@@ -45,6 +45,7 @@ const WalletModalStyleWrapper = styled.div`
       content: "";
     }
   }
+  
 
   .mint_modal_content {
     height: 100%;
