@@ -6,7 +6,8 @@ const TeamMember = ({ avatar, name, designation, socialLinks }) => {
     <TeamMemberStyleWrapper className="team-item">
       <img src={avatar} alt="Team-thumb" />
       <h4 className="team-title mb-8">
-        <a href="/team-details">{name}</a>
+        {/* <a href="/team-details">{name}</a> */}
+        <a href="/#">{name}</a>
       </h4>
       <div className="dsc">{designation}</div>
       <ul className="team-icon-list">

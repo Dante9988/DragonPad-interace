@@ -78,21 +78,21 @@ const BSC_MAINNET_PARAMS = {
     blockExplorerUrls: ['https://bscscan.com/'],
 };
 
-window.ethereum.on('chainChanged', async (chainId) => {
-    // Check if the current chain is not Binance Smart Chain
-    if (chainId !== BSC_TESTNET_PARAMS.chainId) {
-      try {
-        // Prompt user to switch to Binance Smart Chain
-        await window.ethereum.request({
-          method: 'wallet_addEthereumChain',
-          params: [BSC_TESTNET_PARAMS],
-        });
-      } catch (switchError) {
-        // Handle errors, e.g., User rejected the request
-        console.error('Failed to switch to Binance Smart Chain:', switchError);
-      }
-    }
-  });
+// window.ethereum.on('chainChanged', async (chainId) => {
+//     // Check if the current chain is not Binance Smart Chain
+//     if (chainId !== BSC_TESTNET_PARAMS.chainId) {
+//       try {
+//         // Prompt user to switch to Binance Smart Chain
+//         await window.ethereum.request({
+//           method: 'wallet_addEthereumChain',
+//           params: [BSC_TESTNET_PARAMS],
+//         });
+//       } catch (switchError) {
+//         // Handle errors, e.g., User rejected the request
+//         console.error('Failed to switch to Binance Smart Chain:', switchError);
+//       }
+//     }
+//   });
 
   export const connectWalletAndCheckNetwork = async () => {
     try {
@@ -128,7 +128,7 @@ if(isMetaMaskInstalled()){
 
 
 // check metamask on connected
-const onMetamaskconnect = async () =>{
+export const onMetamaskconnect = async () =>{
     const chainId = await getChainId();
     ethereum.on('connect', () =>{
         console.log(chainId);
@@ -146,7 +146,7 @@ export const removeChainChangeListener = (callback) => {
   window.ethereum.removeListener('chainChanged', callback);
 };
 
-const getChainId = async () =>{
+export const getChainId = async () =>{
     const chainId = await ethereum.request({ method: 'eth_chainId' });
 
     return parseInt(chainId);

@@ -73,36 +73,36 @@ const data = [
       },
     ],
   },
-  {
-    avatar: avatar5,
-    name: "Yuliia Malysh",
-    designation: "QA Engineer",
-    socialLinks: [
-      {
-        icon: <TbBrandLinkedin />,
-        url: "#",
-      },
-      {
-        icon: <TbBrandTwitter />,
-        url: "#",
-      },
-    ],
-  },
-  {
-    avatar: avatar6,
-    name: "Anton Danchenko",
-    designation: "Advisor",
-    socialLinks: [
-      {
-        icon: <TbBrandLinkedin />,
-        url: "https://www.linkedin.com/in/anton-danchenko-629768111/",
-      },
-      {
-        icon: <TbBrandTwitter />,
-        url: "#",
-      },
-    ],
-  },
+  // {
+  //   avatar: avatar5,
+  //   name: "Yuliia Malysh",
+  //   designation: "QA Engineer",
+  //   socialLinks: [
+  //     {
+  //       icon: <TbBrandLinkedin />,
+  //       url: "#",
+  //     },
+  //     {
+  //       icon: <TbBrandTwitter />,
+  //       url: "#",
+  //     },
+  //   ],
+  // },
+  // {
+  //   avatar: avatar6,
+  //   name: "Anton Danchenko",
+  //   designation: "Advisor",
+  //   socialLinks: [
+  //     {
+  //       icon: <TbBrandLinkedin />,
+  //       url: "https://www.linkedin.com/in/anton-danchenko-629768111/",
+  //     },
+  //     {
+  //       icon: <TbBrandTwitter />,
+  //       url: "#",
+  //     },
+  //   ],
+  // },
   // {
   //   avatar: avatar7,
   //   name: "R. Hawley",

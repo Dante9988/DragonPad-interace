@@ -51,6 +51,17 @@ const NavWrapper = styled.nav`
     justify-content: space-between;
   }
 
+  .warning-btn {
+    background-color: #ffcc00; /* Warning color, for example */
+    color: black; /* Text color for better visibility */
+    border-color: #ffcc00; /* Matching border color if needed */
+  
+    &:hover {
+      background-color: darken(#ffcc00, 5%);
+      border-color: darken(#ffcc00, 5%);
+    }
+  }
+
   .gamfi_menu_list {
     ul {
       margin-left: 0;
