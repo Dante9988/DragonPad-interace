@@ -20,8 +20,8 @@ const Contact = () => {
                                     <img src={locationIcon} alt="icon" className="img-fluid" />
                                 </div>
                                 <div className="info_item_content">
-                                    <h6>GAMFI HQ</h6>
-                                    <p>GamFi Inc, 06 Highley St, Victoria, Germany</p>
+                                    <h6>DragonPad AI</h6>
+                                    <p>DragonPad Inc, 388 Beale St, San-Francisco</p>
                                     <a href="# ">Google Direction</a>
                                 </div>
                             </div>
@@ -30,9 +30,9 @@ const Contact = () => {
                                     <img src={locationIcon} alt="icon" className="img-fluid" />
                                 </div>
                                 <div className="info_item_content">
-                                    <h6>Call Us</h6>
+                                    {/* <h6>Call Us</h6>
                                     <p>Mobile: (+61) - 1990 - 6886</p>
-                                    <p>Hotline: 1800 - 1102</p>
+                                    <p>Hotline: 1800 - 1102</p> */}
                                 </div>
                             </div>
                             <div className="contact_info_item">

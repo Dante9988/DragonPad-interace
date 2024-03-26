@@ -39,8 +39,8 @@ const FooterBottom = () => {
           </ul>
 
           <div className="copyright-text">
-            Copyright © 2022. All Rights Reserved by
-            <a href="# " target="_blank">GaFi</a>
+            Copyright © 2024. All Rights Reserved by
+            <a href="# " target="_blank">DragonPad AI</a>
           </div>
           <div className="scrollup text-center">
             <a href="# ">
