@@ -51,7 +51,7 @@ const Header = () => {
         // This function will update the network state
         const updateNetworkState = (_chainId) => {
           const chainIdDecimal = parseInt(_chainId, 16); // Convert hex to decimal
-          setIsCorrectNetwork(chainIdDecimal === 97);
+          setIsCorrectNetwork(chainIdDecimal === 11155111);
         };
   
         // Listen for chain changes to update the state

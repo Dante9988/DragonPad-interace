@@ -55,11 +55,24 @@ export const BSC_TESTNET_PARAMS = {
   blockExplorerUrls: ['https://testnet.bscscan.com'],
 };
 
+export const SEPOLIA_TESTNET_PARAMS = {
+  chainId: '0xAA36A7', // Hexadecimal for 11155111
+  chainName: 'Sepolia Testnet',
+  nativeCurrency: {
+    name: 'Ether',
+    symbol: 'ETH',
+    decimals: 18,
+  },
+  rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/yGwUwvfEKQhX1lHKwtbC_WG6z7M9CFph'], // Replace API_KEY with your actual API key
+  blockExplorerUrls: ['https://sepolia.etherscan.io'],
+};
+
+
 export const switchToBscTestnet = async () => {
   try {
       await window.ethereum.request({
           method: 'wallet_addEthereumChain',
-          params: [BSC_TESTNET_PARAMS],
+          params: [SEPOLIA_TESTNET_PARAMS],
       });
   } catch (switchError) {
       console.error('Error switching to BSC Testnet:', switchError);
@@ -99,11 +112,11 @@ const BSC_MAINNET_PARAMS = {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const { chainId } = await provider.getNetwork();
   
-      if (parseInt(chainId) !== parseInt(BSC_TESTNET_PARAMS.chainId, 16)) {
+      if (parseInt(chainId) !== parseInt(SEPOLIA_TESTNET_PARAMS.chainId, 16)) {
         // Prompt user to switch to Binance Smart Chain
         await window.ethereum.request({
           method: 'wallet_addEthereumChain',
-          params: [BSC_TESTNET_PARAMS],
+          params: [SEPOLIA_TESTNET_PARAMS],
         });
       } else {
         // Proceed with wallet connection

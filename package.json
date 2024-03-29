@@ -21,7 +21,7 @@
     "react-slick": "^0.29.0",
     "react-tabs": "^5.1.0",
     "react-visibility-sensor": "^5.1.1",
-    "styled-components": "^5.3.5",
+    "styled-components": "^5.3.11",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -49,8 +49,8 @@
     ]
   },
   "devDependencies": {
-    "netlify-cli": "^10.16.0",
     "ethereum-waffle": "^3.4.0",
-    "ethers": "^5.5.4"
+    "ethers": "^5.5.4",
+    "netlify-cli": "^10.16.0"
   }
 }
