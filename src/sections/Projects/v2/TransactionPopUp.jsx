@@ -2,13 +2,15 @@ import { PopUpOverlay, PopUpContent, Spinner, PopUpButton, CloseIcon, StyledInpu
 import React, { useEffect, useState } from 'react';
 import Button from "components/button";
 
-const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, onSubmit }) => {
+const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, onSubmit, isTxnSuccess }) => {
     const [amount, setAmount] = useState('');
     const [buttonState, setButtonState] = useState(''); // 'submit', 'close'
 
     useEffect(() => {
-        if (txHash || isTxnFailed) {
-            setButtonState('close');
+        if (txHash || isTxnSuccess) {
+            setButtonState('');
+        } else if (isTxnFailed) {
+            setButtonState('try again');
         } else {
             setButtonState('submit');
         }
@@ -25,46 +27,92 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
 
     if (!isOpen) return null;
 
+ 
     return (
         <PopUpOverlay>
             <PopUpContent>
                 <CloseIcon onClick={onClose} />
-                {isTxnPending ? (
+                {isTxnPending && (
                     <>
                         <Spinner />
                         <p>Transaction is processing...</p>
                     </>
-                ) : txHash ? (
+                )}
+                {isTxnSuccess && (
                     <>
                         <p>Transaction successful!</p>
                         <a href={`https://sepolia.etherscan.io/tx/${txHash}`} target="_blank" rel="noopener noreferrer">
                             View on Etherscan
                         </a>
-                        <PopUpButton onClick={handleButtonClick} state={txHash || isTxnFailed ? "close" : "submit"}>
-                            {txHash || isTxnFailed ? 'Close' : 'Submit'}
+                        <PopUpButton onClick={handleButtonClick}>
+                            Close
                         </PopUpButton>
                     </>
-                ) : isTxnFailed ? (
+                )}
+                {isTxnFailed && (
                     <>
                         <p>Transaction failed. Please try again.</p>
-                        <PopUpButton onClick={handleButtonClick} state={txHash || isTxnFailed ? "close" : "submit"}>
-                            {txHash || isTxnFailed ? 'Close' : 'Submit'}
+                        <PopUpButton onClick={() => setAmount('')}>
+                            Try Again
                         </PopUpButton>
                     </>
-                ) : (
+                )}
+                {(!isTxnPending && !isTxnSuccess && !isTxnFailed) && (
                     <>
                         <StyledInput
                             type="number"
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
-                            placeholder="Enter amount to invest"
+                            placeholder="Enter amount"
                         />
-                        <PopUpButton onClick={() => handleButtonClick(amount)} state="submit">Submit</PopUpButton>
+                        <PopUpButton onClick={handleButtonClick}>
+                            Submit
+                        </PopUpButton>
                     </>
                 )}
             </PopUpContent>
         </PopUpOverlay>
     );
+    // return (
+    //     <PopUpOverlay>
+    //         <PopUpContent>
+    //             <CloseIcon onClick={onClose} />
+    //             {isTxnPending ? (
+    //                 <>
+    //                     <Spinner />
+    //                     <p>Transaction is processing...</p>
+    //                 </>
+    //             ) : txHash ? (
+    //                 <>
+    //                     <p>Transaction successful!</p>
+    //                     <a href={`https://sepolia.etherscan.io/tx/${txHash}`} target="_blank" rel="noopener noreferrer">
+    //                         View on Etherscan
+    //                     </a>
+    //                     <PopUpButton onClick={handleButtonClick} state={txHash || isTxnFailed ? "close" : "submit"}>
+    //                         {txHash || isTxnFailed ? 'Close' : 'Submit'}
+    //                     </PopUpButton>
+    //                 </>
+    //             ) : isTxnFailed ? (
+    //                 <>
+    //                     <p>Transaction failed. Please try again.</p>
+    //                     <PopUpButton onClick={handleButtonClick} state={txHash || isTxnFailed ? "close" : "submit"}>
+    //                         {txHash || isTxnFailed ? 'Close' : 'Submit'}
+    //                     </PopUpButton>
+    //                 </>
+    //             ) : (
+    //                 <>
+    //                     <StyledInput
+    //                         type="number"
+    //                         value={amount}
+    //                         onChange={(e) => setAmount(e.target.value)}
+    //                         placeholder="Enter amount to invest"
+    //                     />
+    //                     <PopUpButton onClick={() => handleButtonClick(amount)} state="submit">Submit</PopUpButton>
+    //                 </>
+    //             )}
+    //         </PopUpContent>
+    //     </PopUpOverlay>
+    // );
 
 };
 

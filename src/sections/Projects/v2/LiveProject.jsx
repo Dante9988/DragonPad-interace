@@ -8,6 +8,7 @@ import data from "assets/data/liveProject/dataV1";
 import Button from "components/button";
 import { ethers } from 'ethers';
 import TransactionPopUp from './TransactionPopUp';
+import { fetchTokenPrice, fetchContractBalance, updateProgress } from '../../../utils/BlockchainUtils'
 //import contractABI from '../../../../contants/ABI.json'
 
 const LiveProject = () => {
@@ -16,6 +17,13 @@ const LiveProject = () => {
   const [isTxnPending, setIsTxnPending] = useState(false);
   const [isTxnFailed, setIsTxnFailed] = useState(false);
   const [investmentAmount, setInvestmentAmount] = useState('');
+  const [isTxnSuccess, setIsTxnSuccess] = useState(false);
+  const [gamefiPrice, setGamefiPrice] = useState('');
+  const [contractBalance, setContractBalance] = useState(0);
+  const [ethPrice, setEthPrice] = useState('');
+  const [progress, setProgress] = useState(0);
+  const totalGAFITokens = 1200; // Total GAFI tokens for the raise
+
 
   // const [contractABI, setContractABI] = useState(null);
 
@@ -55,6 +63,56 @@ const LiveProject = () => {
     slidesToScroll: 1,
   };
 
+  useEffect(() => {
+    const tokenIds = 'gamefi'; // CoinGecko Gamefi ID
+    const ethIds = 'ethereum';
+    let intervalId;
+
+    const fetchPrice = async () => {
+      const data = await fetchTokenPrice(tokenIds);
+      if (data && data[tokenIds] && data[tokenIds].usd) {
+        setGamefiPrice(data[tokenIds].usd);
+      }
+    };
+
+    const fetchEthPrice = async (ethPrice) => {
+      const data = await fetchTokenPrice(ethIds);
+      if (data && data[ethIds] && data[ethIds].usd) {
+        setEthPrice(data[ethIds].usd);
+      }
+    };
+
+    const loadBalance = async () => {
+      const balance = await fetchContractBalance(contractAddress);
+      setContractBalance(balance);
+    };
+
+    const totalRaiseInUSD = gamefiPrice ? (gamefiPrice * totalGAFITokens).toFixed(2) : 'Loading...';
+
+    const fetchAndUpdateProgress = async () => {
+      const progressPercentage = await updateProgress(contractAddress, totalRaiseInUSD);
+      setProgress(progressPercentage);
+    };
+
+    loadBalance();
+
+    fetchPrice(); // Fetch immediately on component mount
+    fetchAndUpdateProgress();
+
+    // Setting up the interval to fetch price every minute
+    // Convert this to a larger interval if necessary to stay within API call limits
+    intervalId = setInterval(fetchPrice, 60000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
+
+  //setTotalRaise(gamefiPrice * 1200);
+  const totalRaiseGoal = 1200; // Example total raise goal in ether
+  const progressPercentage = (contractBalance / totalRaiseGoal) * 100;
+  const totalRaiseInUSD = gamefiPrice ? (gamefiPrice * totalGAFITokens).toFixed(2) : 'Loading...';
+  console.log("Precentage of pool funded",progressPercentage);
+
   const CountdownRender = ({ days, hours, minutes, seconds, completed }) => {
     return (
       <div className="countdown_wrapper">
@@ -81,6 +139,7 @@ const LiveProject = () => {
   const resetTransactionState = () => {
     setIsTxnPending(false);
     setIsTxnFailed(false);
+    setIsTxnSuccess(false);
     setTransactionHash('');
     // Reset the investment amount if you're storing it in the state
     setInvestmentAmount('');
@@ -108,29 +167,39 @@ const LiveProject = () => {
         );
 
         setIsPopupVisible(true);
-        setIsTxnPending(true);
-        setIsTxnFailed(false);
 
-        // You'll call the deposit method from your contract
-        // Here, we assume that you want to deposit 0 ether just for demonstration
-        // You will replace '0' with the amount you want to deposit
-        // and convert it to the correct units using ethers.utils.parseEther
-        const tx = await contract.deposit({ value: ethers.utils.parseEther(amount || '0') });
+        const tx = await contract.deposit({ value: ethers.utils.parseEther(amount.toString()) });
         setTransactionHash(tx.hash);
         setIsTxnPending(false);
         console.log('Transaction sent:', tx);
+        setIsTxnPending(true);
         // Wait for the transaction to be confirmed
-        await tx.wait();
-        console.log('Transaction confirmed');
+        const receipt = await tx.wait();
+        console.log('Transaction confirmed:', receipt);
+
+        setIsTxnPending(true);
+
+
+        if (receipt.status === 1) {
+          setTransactionHash(tx.hash);
+          console.log('Transaction succeeded with hash:', tx.hash);
+          setIsTxnSuccess(true);
+          setIsTxnPending(false);
+          setIsTxnFailed(false);
+
+        } else {
+          setIsTxnFailed(true);
+        }
+
       } catch (error) {
         console.error('An error occurred:', error);
 
         if (error.code === 4001) { // Code 4001 indicates the user rejected the request in MetaMask
           setIsTxnFailed(true);
         }
-        setIsPopupVisible(true);
         setIsTxnPending(false);
-        isTxnFailed(true);
+        setIsPopupVisible(true);
+        //setIsTxnFailed(true);
       }
     } else {
       console.log('MetaMask is not installed!');
@@ -160,11 +229,11 @@ const LiveProject = () => {
                         <h3 className="mb-15">
                           <a href="/projects-details-1">{item.title}</a>
                         </h3>
-                        <div className="dsc">PRICE = {item.price}</div>
+                        <div className="dsc">LIVE PRICE = {gamefiPrice ? `${gamefiPrice} USD` : 'Loading...'}</div>
                       </div>
                     </div>
                     <div className="all-raise">
-                      Total Raise {item.totalRise}
+                      Total Raise in USD ${totalRaiseInUSD}
                     </div>
                   </div>
                   <div className="allocation-max text-center">
@@ -178,15 +247,18 @@ const LiveProject = () => {
                     </Button>
                   </div>
                   <div className="targeted-raise">
-                    <div className="seles-end-text">Pool raise ended</div>
+                    <div className="seles-end-text">Pool raise in progress</div>
                     <Countdown date="2024-02-01T01:02:03" renderer={CountdownRender} />
                     <div className="targeted-raise-amount">
-                      Targeted Raise {item.targetedRise}
+                      Targeted Raise For Staking {item.targetedRise}
+                    </div>
+                    <div className="max-allocation">
+                      Maximum Guaranteed Allocation in IDOs
                     </div>
                   </div>
                 </div>
                 <div className="progress-inner">
-                  <ProgressBar progress={item.progress} />
+                  <ProgressBar progress={`${progress}%`} />
                 </div>
 
                 {/* hover */}
@@ -201,6 +273,7 @@ const LiveProject = () => {
           isTxnPending={isTxnPending}
           txHash={transactionHash}
           isTxnFailed={isTxnFailed}
+          isTxnSuccess={isTxnSuccess}
           onClose={() => {
             setIsPopupVisible(false);
             resetTransactionState(); // Call reset when closing the pop-up
