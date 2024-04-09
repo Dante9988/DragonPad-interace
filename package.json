@@ -28,7 +28,6 @@
     "react-tabs": "^5.1.0",
     "react-visibility-sensor": "^5.1.1",
     "styled-components": "^5.3.11",
-    "typescript": "^5.4.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
