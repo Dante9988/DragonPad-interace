@@ -5,17 +5,20 @@ import Button from "components/button";
 import MobileMenu from "../MobileMenu/MobileMenu";
 import data from "assets/data/menu/menuData";
 import logo from "assets/images/logo.png";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { 
   isAccountConnected, 
   onChainChange, 
   removeChainChangeListener, 
   switchToBscTestnet,
   getChainId,
-  onMetamaskconnect
+  onMetamaskconnect,
+  switchNetwork,
 } from "../../../lib/metamaskhandler"
 import styled from "styled-components";
 import connectIcon from "assets/images/icons/connect.png"
+import NetworkSelector from './NetworkSelector';
+import { ModalContext } from '../../../utils/ModalContext'
 // import walletIcon1 from "assets/images/icons/pancake.png"
 // import walletIcon2 from "assets/images/icons/uniswap.png"
 // import walletIcon3 from "assets/images/icons/market.png"
@@ -38,49 +41,106 @@ const Header = () => {
   const [userAddress, setUserAddress] = useState('');
   const [isCorrectNetwork, setIsCorrectNetwork] = useState(true);
   const [isWalletConnected, setIsWalletConnected] = useState(false);
+  const [selectedNetwork] = useState('');
+  const { 
+    updateWalletConnectionStatus,
+    updateSelectedNetworkByChainId,
+    setSelectedNetwork,
+  } = useContext(ModalContext);
+
+  const updateNetworkInfo = (_chainId) => {
+    const chainIdDecimal = parseInt(_chainId, 16); // Convert hex to decimal
+    setIsCorrectNetwork(chainIdDecimal === 1); // Compare with the expected decimal chain ID for Ethereum Mainnet
+    updateSelectedNetworkByChainId(_chainId); // Update the selected network in the context
+  };
 
   useEffect(() => {
+    // Function to check wallet connection and set up event listeners
     const checkWalletConnectionAndNetwork = async () => {
       if (window.ethereum) {
+        // Check if any accounts are connected
+        setSelectedNetwork('Base');
         const accounts = await isAccountConnected();
-        setIsWalletConnected(accounts.length > 0);
+        updateWalletConnectionStatus(accounts.length > 0);
         if (accounts.length > 0) {
           setUserAddress(accounts[0]);
         }
-  
-        // This function will update the network state
-        const updateNetworkState = (_chainId) => {
-          const chainIdDecimal = parseInt(_chainId, 16); // Convert hex to decimal
-          setIsCorrectNetwork(chainIdDecimal === 11155111);
-        };
-  
-        // Listen for chain changes to update the state
-        window.ethereum.on('chainChanged', updateNetworkState);
-  
-        // Listen for the connect event as well, which includes the chain ID
-        window.ethereum.on('connect', (info) => updateNetworkState(info.chainId));
-  
-        // Check the current chain immediately
+
+        // Check the current chain immediately and set up listeners
         const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-        updateNetworkState(chainId);
-  
+        updateNetworkInfo(chainId);
+
+        // Listen for chain changes to update the state
+        window.ethereum.on('chainChanged', updateNetworkInfo);
+
+        // Listen for the connect event as well, which includes the chain ID
+        window.ethereum.on('connect', (info) => updateNetworkInfo(info.chainId));
+
         // Cleanup function to remove listeners
         return () => {
-          window.ethereum.removeListener('chainChanged', updateNetworkState);
-          window.ethereum.removeListener('connect', (info) => updateNetworkState(info.chainId));
+          window.ethereum.removeListener('chainChanged', updateNetworkInfo);
+          window.ethereum.removeListener('connect', updateNetworkInfo);
         };
       }
     };
 
-  checkWalletConnectionAndNetwork();
-  }, []);
+    checkWalletConnectionAndNetwork();
+  }, [updateWalletConnectionStatus, updateSelectedNetworkByChainId]);
+  // useEffect(() => {
+  //   const checkWalletConnectionAndNetwork = async () => {
+  //     if (window.ethereum) {
+  //       const accounts = await isAccountConnected();
+  //       setIsWalletConnected(accounts.length > 0);
+  //       if (accounts.length > 0) {
+  //         setUserAddress(accounts[0]);
+  //       }
+  
+  //       // This function will update the network state
+  //       const updateNetworkState = (_chainId) => {
+  //         const chainIdDecimal = parseInt(_chainId, 16); // Convert hex to decimal
+  //         setIsCorrectNetwork(chainIdDecimal === 11155111);
+  //       };
+  
+  //       // Listen for chain changes to update the state
+  //       window.ethereum.on('chainChanged', updateNetworkState);
+  
+  //       // Listen for the connect event as well, which includes the chain ID
+  //       window.ethereum.on('connect', (info) => updateNetworkState(info.chainId));
+  
+  //       // Check the current chain immediately
+  //       const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+  //       updateNetworkState(chainId);
+  
+  //       // Cleanup function to remove listeners
+  //       return () => {
+  //         window.ethereum.removeListener('chainChanged', updateNetworkState);
+  //         window.ethereum.removeListener('connect', (info) => updateNetworkState(info.chainId));
+  //       };
+  //     }
+  //   };
+
+  // checkWalletConnectionAndNetwork();
+  // }, []);
 
   const handleConnectOrSwitchNetwork = async (e) => {
-    if (!isCorrectNetwork) {
-      await switchToBscTestnet();
+    e.preventDefault(); // Prevent the default action of the button
+    if (selectedNetwork && !isCorrectNetwork) {
+      await handleSwitchNetwork(selectedNetwork);
     } else {
-      e.preventDefault();
       walletModalHandle();
+      console.log(selectedNetwork)
+
+    }
+  };
+
+  const handleSwitchNetwork = async (networkName) => {
+    try {
+      const chainId = await switchNetwork(networkName);
+      setIsCorrectNetwork(chainId === await getChainId()); // Update network state
+      setSelectedNetwork(networkName); // Update the selected network state
+    } catch (error) {
+      // Handle errors, for example, show an error message to the user
+      console.error('Failed to switch the network:', error);
     }
   };
 
@@ -148,10 +208,30 @@ const Header = () => {
               </ul>
             </div>
             <div className="gamfi_menu_btns">
+            <w3m-network-button> </w3m-network-button>
               <button className="menu_btn" onClick={handleMobileMenu}>
                 <MdNotes />
               </button>
-              <Button
+              <w3m-button />
+              {/* <Button
+                href="# "
+                sm
+                variant="white"
+                className={`connect_btn ${!isCorrectNetwork ? 'warning' : ''}`}
+                onClick={handleConnectOrSwitchNetwork}
+              >
+                <img src={connectIcon} alt="icon" />
+                {
+                  isWalletConnected ? 
+                    (
+                      isCorrectNetwork ? 
+                        formatAddress(userAddress) : 
+                        `Switch to ${selectedNetwork}`
+                    ) : 
+                    'Connect'
+                }
+              </Button> */}
+              {/* <Button
                 href="# "
                 sm
                 variant="white"
@@ -160,7 +240,7 @@ const Header = () => {
               >
                 <img src={connectIcon} alt="icon" />
                 {isWalletConnected ? (isCorrectNetwork ? formatAddress(userAddress) : 'Switch') : 'Connect'}
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

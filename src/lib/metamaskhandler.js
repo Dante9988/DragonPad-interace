@@ -43,6 +43,64 @@ export const isAccountConnected = async () =>{
     }
 }
 
+const NETWORK_PARAMS = {
+  Ethereum: {
+    chainId: '0xAA36A7', // Hexadecimal for 11155111
+    chainName: 'Sepolia Testnet',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/yGwUwvfEKQhX1lHKwtbC_WG6z7M9CFph'], // Replace API_KEY with your actual API key
+    blockExplorerUrls: ['https://etherscan.io'],
+},
+BSC: {
+    chainId: '0x61', // Hexadecimal for 11155111
+    chainName: 'Bsc Testnet',
+    nativeCurrency: {
+        name: 'Bnb',
+        symbol: 'BNB',
+        decimals: 18,
+    },
+    rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/yGwUwvfEKQhX1lHKwtbC_WG6z7M9CFph'], // Replace API_KEY with your actual API key
+    blockExplorerUrls: ['https://etherscan.io'],
+},
+Base: {
+    chainId: '0x14a34', // Hexadecimal for 11155111
+    chainName: 'Base Sepolia',
+    nativeCurrency: {
+        name: 'Ether',
+        symbol: 'ETH',
+        decimals: 18,
+    },
+    rpcUrls: ['https://base-sepolia.g.alchemy.com/v2/7KbVOrGpJ0Fu-91p9jFK904-Sc2mZSbs'], // Replace API_KEY with your actual API key
+    blockExplorerUrls: ['https://base-sepolia.blockscout.com'],
+},
+  // Polygon: {
+  //     chainId: '0x89', // Hexadecimal for 11155111
+  //     chainName: 'Sepolia Testnet',
+  //     nativeCurrency: {
+  //         name: 'Ether',
+  //         symbol: 'ETH',
+  //         decimals: 18,
+  //     },
+  //     rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/yGwUwvfEKQhX1lHKwtbC_WG6z7M9CFph'], // Replace API_KEY with your actual API key
+  //     blockExplorerUrls: ['https://etherscan.io'],
+  // },
+  // Blast: {
+  //     chainId: '0xAA36A7', // Hexadecimal for 11155111
+  //     chainName: 'Sepolia Testnet',
+  //     nativeCurrency: {
+  //         name: 'Ether',
+  //         symbol: 'ETH',
+  //         decimals: 18,
+  //     },
+  //     rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/yGwUwvfEKQhX1lHKwtbC_WG6z7M9CFph'], // Replace API_KEY with your actual API key
+  //     blockExplorerUrls: ['https://etherscan.io'],
+  // },
+}
+
 export const BSC_TESTNET_PARAMS = {
   chainId: '0x61', // Hexadecimal for 97
   chainName: 'BSC Testnet',
@@ -106,6 +164,24 @@ const BSC_MAINNET_PARAMS = {
 //       }
 //     }
 //   });
+
+export const switchNetwork = async (networkName) => {
+  const params = NETWORK_PARAMS[networkName];
+  
+  if (!params) {
+    console.error(`Network parameters for ${networkName} not found`);
+    return;
+  }
+
+  try {
+    await window.ethereum.request({
+      method: 'wallet_addEthereumChain',
+      params: [params],
+    });
+  } catch (switchError) {
+    console.error(`Error switching to ${networkName}:`, switchError);
+  }
+};
 
   export const connectWalletAndCheckNetwork = async () => {
     try {

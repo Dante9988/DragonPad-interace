@@ -147,3 +147,39 @@ export const PopUpContent = styled.div`
     }
   }
 `;
+
+export const StyledSelect = styled.select`
+  width: 100%;
+  padding: 12px 15px; // Increased padding for a better touch area and visual balance
+  margin-bottom: 20px; // Consistent spacing with other elements
+  background-color: #ffffff; // Clear white background for crisp appearance
+  border: 2px solid #e2e2e2; // Subtle border color for depth
+  border-radius: 8px; // More pronounced rounded corners for a modern look
+  font-size: 16px; // Legible font size
+  color: #333333; // Darker text color for better contrast
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; // Modern, clean font-family
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); // Soft shadow for depth
+
+  &:focus {
+    border-color: #9ecaed; // Highlight color when focused
+    box-shadow: 0 0 5px rgba(156,202,235,0.8); // Expanding the shadow for focus indication
+    outline: none; // Removing default focus outline
+  }
+
+  -webkit-appearance: none; // Removing default select dropdown style
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer; // Cursor pointer for better user indication
+
+  // Custom dropdown arrow using background-image
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, #f0f0f0, #f0f0f0); // Creating a custom arrow with gradients
+  background-position: right 15px top 1em, right 10px top 1em, right 2.5em bottom 0.5em; // Positioning the custom arrows
+  background-size: 5px 5px, 5px 5px, 1px 1.5em; // Sizing the custom arrows
+  background-repeat: no-repeat;
+
+  &:hover {
+    border-color: #9ecaed; // Border color change on hover for visual feedback
+  }
+`;
+
+
