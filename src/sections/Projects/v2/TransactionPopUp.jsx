@@ -2,29 +2,53 @@ import { PopUpOverlay, PopUpContent, Spinner, PopUpButton, CloseIcon, StyledInpu
 import React, { useEffect, useState } from 'react';
 import Button from "components/button";
 
-const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, onSubmit, isTxnSuccess }) => {
+const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, onSubmit, isTxnSuccess, currency, setCurrency, isApprovalPending, isApprovalFailed, isApprovalSuccess }) => {
     const [amount, setAmount] = useState('');
-    const [currency, setCurrency] = useState('ETH');
     const [buttonState, setButtonState] = useState(''); // 'submit', 'close'
+    const [isApproved, setIsApproved] = useState(false);
+    const [isAmountDisabled, setIsAmountDisabled] = useState(false);
+    const [buttonText, setButtonText] = useState('Submit');
 
     useEffect(() => {
         if (txHash || isTxnSuccess) {
-            setButtonState('');
+          setButtonState('');
+          setIsAmountDisabled(false);
         } else if (isTxnFailed) {
-            setButtonState('try again');
+          setButtonState('try again');
+          setIsAmountDisabled(false);
+        } else if (currency === 'USDT' && !isApprovalSuccess) {
+          setButtonState('approve');
         } else {
-            setButtonState('submit');
+          setButtonState('submit');
         }
-    }, [txHash, isTxnFailed]);
+      }, [txHash, isTxnSuccess, isTxnFailed, currency, isApprovalSuccess]);
 
     const handleButtonClick = async () => {
         if (buttonState === 'submit') {
-            await onSubmit(amount, currency);
+            await onSubmit(amount, currency, 'deposit');
+        } else if (buttonState === 'approve') {
+            await onSubmit(amount, currency, 'approve');
+        } else if (buttonState === 'try again') {
+            // logic to retry the transaction
         } else {
             onClose();
             setAmount('');
         }
     };
+
+    const onButtonClick = async () => {
+        const action = currency === 'USDT' && !isApprovalSuccess ? 'approve' : 'deposit';
+        buttonState = currency === 'USDT' && !isApprovalSuccess ? 'approve' : 'submit';
+
+        await onSubmit(amount, currency, action); // Assuming onSubmit is a prop that refers to handleInvest
+      };
+
+    // const handleCurrencyChange = (e) => {
+    //     setCurrency(e.target.value);
+    //     if (onCurrencyChange) {
+    //         onCurrencyChange(e.target.value); // Notifying the parent component about the change
+    //     }
+    // };
 
     if (!isOpen) return null;
 
@@ -32,7 +56,13 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
         <PopUpOverlay>
             <PopUpContent>
                 <CloseIcon onClick={onClose} />
-                {isTxnPending && (
+                {isApprovalPending && (
+                    <>
+                        <Spinner />
+                        <p>Approval is processing...</p>
+                    </>
+                )}
+                {isTxnPending && !isApprovalPending && (
                     <>
                         <Spinner />
                         <p>Transaction is processing...</p>
@@ -49,7 +79,23 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
                         </PopUpButton>
                     </>
                 )}
-                {isTxnFailed && (
+                {isApprovalSuccess && !isApprovalFailed && !isApprovalPending && (
+                    <>
+                        <p>Approval successful!</p>
+                        <a href={`https://etherscan.io/tx/${txHash}`} target="_blank" rel="noopener noreferrer">
+                            View on Etherscan
+                        </a>
+                        {/* <StyledInput
+                            type="number"
+                            value={amount}
+                            onChange={(e) => setAmount(e.target.value)}
+                            placeholder="Enter amount"
+                            disabled={isAmountDisabled}
+                />*/}
+                        {/* <PopUpButton onClick={handleButtonClick}>Submit</PopUpButton>  */}
+                    </>
+                )}
+                {(isTxnFailed && isApprovalFailed) && (
                     <>
                         <p>Transaction failed. Please try again.</p>
                         <PopUpButton onClick={onClose}>
@@ -57,7 +103,7 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
                         </PopUpButton>
                     </>
                 )}
-                {(!isTxnPending && !isTxnSuccess && !isTxnFailed) && (
+                {(!isTxnPending && !isTxnSuccess && !isTxnFailed && !isApprovalPending) && (
                     <>
                         <StyledSelect value={currency} onChange={(e) => setCurrency(e.target.value)}>
                             <option value="ETH">ETH</option>
@@ -68,10 +114,9 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
                             placeholder="Enter amount"
+                            disabled={isAmountDisabled}
                         />
-                        <PopUpButton onClick={handleButtonClick}>
-                            Submit
-                        </PopUpButton>
+                        <PopUpButton onClick={handleButtonClick}>{buttonState}</PopUpButton>
                     </>
                 )}
             </PopUpContent>
