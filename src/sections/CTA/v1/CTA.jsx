@@ -8,13 +8,13 @@ const CTA = () => {
       <div className="container">
         <div className="cta-area text-center">
           <h2 className="title">
-            Vote for the next pool
+            Vote for the next IDO
           </h2>
           <div className="dsc">
             If you want to get in early into Web 3.0 Projects, this is the place to be!
           </div>
           <Button variant="mint" md href="#">
-            Join a Pool
+            Join Revolution
           </Button>
           <CardHover />
         </div>

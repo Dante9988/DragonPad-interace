@@ -1,11 +1,11 @@
 const data = [
   {
     title: "Team",
-    value: "7.5",
+    value: "10",
   },
   {
-    title: "Staking",
-    value: "9.50",
+    title: "Rewards",
+    value: "10.00",
   },
   {
     title: "Advisors",
@@ -13,19 +13,23 @@ const data = [
   },
   {
     title: "Liquidity",
-    value: "12.00",
+    value: "15.00",
   },
   {
     title: "Ecosystem",
-    value: "16.33",
+    value: "10.00",
   },
   {
-    title: "Marketing",
-    value: "18.00",
+    title: "Seed Sale",
+    value: "20.00",
   },
   {
     title: "Private Sale",
-    value: "30.00",
+    value: "15.00",
+  },
+  {
+    title: "Public Sale",
+    value: "10.00",
   },
 ];
 

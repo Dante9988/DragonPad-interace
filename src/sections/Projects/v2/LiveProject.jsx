@@ -29,6 +29,8 @@ const LiveProject = () => {
   const [isApprovalPending, setIsApprovalPending] = useState(false);
   const [isApprovalSuccess, setIsApprovalSuccess] = useState(false);
   const [isApprovalFailed, setIsApprovalFailed] = useState(false);
+  const [countdownDate, setCountdownDate] = useState(new Date('2024-05-01T01:02:03'));
+
   // const [contractABI, setContractABI] = useState(null);
 
   // useEffect(() => {
@@ -52,231 +54,231 @@ const LiveProject = () => {
 
   const depositContractAddress = '0x0155B58E490D1E8Ee31a1c42Cff8725A3d355ea2';
   const contractABI = [
-    {"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"OwnableInvalidOwner","type":"error"},{"inputs":[{"internalType":"address","name":"account","type":"address"}],"name":"OwnableUnauthorizedAccount","type":"error"},{"inputs":[],"name":"ReentrancyGuardReentrantCall","type":"error"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":true,"internalType":"address","name":"depositedToken","type":"address"},{"indexed":true,"internalType":"address","name":"depositedTo","type":"address"}],"name":"ERC20DepositDone","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"},{"indexed":true,"internalType":"address","name":"depositedTo","type":"address"}],"name":"depositDone","type":"event"},{"inputs":[],"name":"deposit","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"depositERC20","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"tokenAddress","type":"address"}],"name":"getERC20Balance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getInvestors","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"recipient","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"transfer","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"tokenAddress","type":"address"},{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdrawERC20","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"nonpayable","type":"function"}
+    { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [{ "internalType": "address", "name": "owner", "type": "address" }], "name": "OwnableInvalidOwner", "type": "error" }, { "inputs": [{ "internalType": "address", "name": "account", "type": "address" }], "name": "OwnableUnauthorizedAccount", "type": "error" }, { "inputs": [], "name": "ReentrancyGuardReentrantCall", "type": "error" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }, { "indexed": true, "internalType": "address", "name": "depositedToken", "type": "address" }, { "indexed": true, "internalType": "address", "name": "depositedTo", "type": "address" }], "name": "ERC20DepositDone", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" }], "name": "OwnershipTransferred", "type": "event" }, { "anonymous": false, "inputs": [{ "indexed": false, "internalType": "uint256", "name": "amount", "type": "uint256" }, { "indexed": true, "internalType": "address", "name": "depositedTo", "type": "address" }], "name": "depositDone", "type": "event" }, { "inputs": [], "name": "deposit", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "payable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "tokenAddress", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "depositERC20", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "getBalance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "tokenAddress", "type": "address" }], "name": "getERC20Balance", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getInvestors", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [{ "internalType": "address", "name": "", "type": "address" }], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "recipient", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "transfer", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "withdraw", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [{ "internalType": "address", "name": "tokenAddress", "type": "address" }, { "internalType": "uint256", "name": "amount", "type": "uint256" }], "name": "withdrawERC20", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "nonpayable", "type": "function" }
   ]
 
   const erc20ABI = [
     {
-        "constant": true,
-        "inputs": [],
-        "name": "name",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
+      "constant": true,
+      "inputs": [],
+      "name": "name",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_spender",
-                "type": "address"
-            },
-            {
-                "name": "_value",
-                "type": "uint256"
-            }
-        ],
-        "name": "approve",
-        "outputs": [
-            {
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_spender",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "approve",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
-        "constant": true,
-        "inputs": [],
-        "name": "totalSupply",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_from",
-                "type": "address"
-            },
-            {
-                "name": "_to",
-                "type": "address"
-            },
-            {
-                "name": "_value",
-                "type": "uint256"
-            }
-        ],
-        "name": "transferFrom",
-        "outputs": [
-            {
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transferFrom",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
-        "constant": true,
-        "inputs": [],
-        "name": "decimals",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint8"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
+      "constant": true,
+      "inputs": [],
+      "name": "decimals",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "_owner",
-                "type": "address"
-            }
-        ],
-        "name": "balanceOf",
-        "outputs": [
-            {
-                "name": "balance",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "name": "balance",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-        "constant": true,
-        "inputs": [],
-        "name": "symbol",
-        "outputs": [
-            {
-                "name": "",
-                "type": "string"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
+      "constant": true,
+      "inputs": [],
+      "name": "symbol",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-        "constant": false,
-        "inputs": [
-            {
-                "name": "_to",
-                "type": "address"
-            },
-            {
-                "name": "_value",
-                "type": "uint256"
-            }
-        ],
-        "name": "transfer",
-        "outputs": [
-            {
-                "name": "",
-                "type": "bool"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "nonpayable",
-        "type": "function"
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "name": "_value",
+          "type": "uint256"
+        }
+      ],
+      "name": "transfer",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
-        "constant": true,
-        "inputs": [
-            {
-                "name": "_owner",
-                "type": "address"
-            },
-            {
-                "name": "_spender",
-                "type": "address"
-            }
-        ],
-        "name": "allowance",
-        "outputs": [
-            {
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "payable": false,
-        "stateMutability": "view",
-        "type": "function"
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_owner",
+          "type": "address"
+        },
+        {
+          "name": "_spender",
+          "type": "address"
+        }
+      ],
+      "name": "allowance",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
     },
     {
-        "payable": true,
-        "stateMutability": "payable",
-        "type": "fallback"
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
     },
     {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "name": "owner",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "name": "spender",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "name": "value",
-                "type": "uint256"
-            }
-        ],
-        "name": "Approval",
-        "type": "event"
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Approval",
+      "type": "event"
     },
     {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "name": "from",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "name": "to",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "name": "value",
-                "type": "uint256"
-            }
-        ],
-        "name": "Transfer",
-        "type": "event"
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "value",
+          "type": "uint256"
+        }
+      ],
+      "name": "Transfer",
+      "type": "event"
     }
-]
+  ]
 
   const USDT_ADDRESSES = {
     Ethereum: '0xdac17f958d2ee523a2206206994597c13d831ec7',
@@ -342,32 +344,37 @@ const LiveProject = () => {
   }, []);
 
   //setTotalRaise(gamefiPrice * 1200);
-  const totalRaiseGoal = 1200; // Example total raise goal in ether
+  const totalRaiseGoal = 400000; // Example total raise goal in ether
   const progressPercentage = (contractBalance / totalRaiseGoal) * 100;
-  const totalRaiseInUSD = gamefiPrice ? (gamefiPrice * totalGAFITokens).toFixed(2) : 'Loading...';
-  console.log("Precentage of pool funded",progressPercentage);
+  const totalRaiseInUSD = "400,000";//gamefiPrice ? (gamefiPrice * totalGAFITokens).toFixed(2) : 'Loading...';
+  console.log("Precentage of pool funded", progressPercentage);
 
   const CountdownRender = ({ days, hours, minutes, seconds, completed }) => {
-    return (
-      <div className="countdown_wrapper">
-        <div>
-          {zeroPad(days)}
-          <span>D</span>
+    if (completed) {
+      // Render a completed state
+      return <div>Pool raise has ended</div>;
+    } else {
+      return (
+        <div className="countdown_wrapper">
+          <div>
+            {zeroPad(days)}
+            <span>D</span>
+          </div>
+          <div>
+            {zeroPad(hours)}
+            <span>H</span>
+          </div>
+          <div>
+            {zeroPad(minutes)}
+            <span>M</span>
+          </div>
+          <div>
+            {zeroPad(seconds)}
+            <span>S</span>
+          </div>
         </div>
-        <div>
-          {zeroPad(hours)}
-          <span>H</span>
-        </div>
-        <div>
-          {zeroPad(minutes)}
-          <span>M</span>
-        </div>
-        <div>
-          {zeroPad(seconds)}
-          <span>S</span>
-        </div>
-      </div>
-    )
+      )
+    }
   }
 
   const resetTransactionState = () => {
@@ -391,19 +398,19 @@ const LiveProject = () => {
       setIsPopupVisible(false);
       return;
     }
-  
+
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const depositContract = new ethers.Contract(depositContractAddress, contractABI, signer);
     let tx;
-  
+
     try {
       if (currency === 'USDT') {
         if (action === 'approve') {
           setIsApprovalPending(true);
           const usdtContract = new ethers.Contract(WFTToken, erc20ABI, signer);
           const amountInWei = ethers.utils.parseUnits(amount, '18'); // USDT usually has 6 decimals
-  
+
           // Approve the USDT transfer
           tx = await usdtContract.approve(depositContractAddress, amountInWei);
           await tx.wait();
@@ -417,7 +424,7 @@ const LiveProject = () => {
           setIsTxnPending(true);
           const receipt = await tx.wait();
           setIsTxnPending(false);
-  
+
           if (receipt.status === 1) {
             setTransactionHash(tx.hash);
             setIsTxnSuccess(true);
@@ -432,7 +439,7 @@ const LiveProject = () => {
         tx = await depositContract.deposit({ value: amountInWei });
         const receipt = await tx.wait();
         setIsTxnPending(false);
-  
+
         if (receipt.status === 1) {
           setTransactionHash(tx.hash);
           setIsTxnSuccess(true);
@@ -444,7 +451,7 @@ const LiveProject = () => {
       console.error('An error occurred:', error);
       setIsTxnPending(false);
       setIsApprovalPending(false);
-  
+
       if (error.code === 4001) {
         // User rejected the transaction
         setIsTxnFailed(true);
@@ -452,8 +459,8 @@ const LiveProject = () => {
       setIsPopupVisible(true);
     }
   };
-  
-  
+
+
   // const handleInvest = async (amount, currency, action) => {
   //   // First, check if MetaMask is available
   //   if (typeof window.ethereum !== 'undefined') {
@@ -476,10 +483,10 @@ const LiveProject = () => {
 
   //       setIsPopupVisible(true);
   //       let tx, amountInWei;
-        
+
 
   //       if (currency === 'USDT' && action === 'approve') {
-          
+
   //         // try {
   //         //   console.log("Currency is: ",currency)
   //         //   let decimals = 18; 
@@ -569,8 +576,8 @@ const LiveProject = () => {
   //       //     console.error("Approval transaction failed:", error);
   //       //   }
   //       // }
-        
-        
+
+
   //       // setTransactionHash(tx.hash);
   //       // setIsTxnPending(false);
   //       // console.log('Transaction sent:', tx);
@@ -618,13 +625,13 @@ const LiveProject = () => {
   //     // Optionally, notify the user MetaMask is not installed
   //     return;
   //   }
-  
+
   //   const provider = new ethers.providers.Web3Provider(window.ethereum);
   //   const signer = provider.getSigner();
   //   //const depositContractAddress = '0xYourDepositContractAddressHere'; // Replace with your contract's address
-    
+
   //   setIsPopupVisible(true);
-  
+
   //   try {
   //     if (currency === 'USDT') {
   //       const usdtAddress = USDT_ADDRESSES[selectedNetwork]; // Use selected network to determine USDT address
@@ -645,7 +652,7 @@ const LiveProject = () => {
   //     handleTransactionError(error);
   //   }
   // };
-  
+
   // Helper function for USDT approval
   async function approveUSDT(signer, usdtContractAddress, depositContractAddress, amount) {
     const usdtContract = new ethers.Contract(usdtContractAddress, erc20ABI, signer);
@@ -654,7 +661,7 @@ const LiveProject = () => {
     console.log('Approval transaction:', tx);
     await tx.wait(); // Wait for the transaction to be confirmed
   }
-  
+
   // Generalized deposit function, assuming your contract's deposit method can handle both USDT and ETH
   async function depositUSDT(signer, depositContractAddress, amount, currency) {
     const contract = new ethers.Contract(depositContractAddress, contractABI, signer);
@@ -663,12 +670,12 @@ const LiveProject = () => {
     setTransactionHash(tx.hash);
     await handleTransactionConfirmation(tx);
   }
-  
+
   // Handles transaction confirmation logic
   async function handleTransactionConfirmation(tx) {
     const receipt = await tx.wait();
     setIsTxnPending(false);
-  
+
     if (receipt.status === 1) {
       console.log('Transaction succeeded:', receipt);
       setIsTxnSuccess(true);
@@ -677,7 +684,7 @@ const LiveProject = () => {
       setIsTxnFailed(true);
     }
   }
-  
+
   // Handles errors during the transaction
   function handleTransactionError(error) {
     setIsTxnPending(false);
@@ -769,7 +776,7 @@ const LiveProject = () => {
                         <h3 className="mb-15">
                           <a href="/projects-details-1">{item.title}</a>
                         </h3>
-                        <div className="dsc">LIVE PRICE = {gamefiPrice ? `${gamefiPrice} USD` : 'Loading...'}</div>
+                        <div className="dsc">USDT PRICE = 0.002</div>
                       </div>
                     </div>
                     <div className="all-raise">
@@ -777,24 +784,26 @@ const LiveProject = () => {
                     </div>
                   </div>
                   <div className="allocation-max text-center">
-                    <img src={item.coinIcon} alt="icon" />
+                    <img src={item.coinIcon} alt="icon" style={{ marginBottom: '10px' }} />
                     <Button onClick={() => setIsPopupVisible(true)} // Replace this with the actual event handler function
                       variant="mint" // Same style as "JOIN COMMUNITY" button
                       md
                       isCenter
+                      style={{ borderRadius: '20px' }}
                       className="banner-btn">
                       INVEST
                     </Button>
                   </div>
                   <div className="targeted-raise">
-                    <div className="seles-end-text">Pool raise in progress</div>
-                    <Countdown date="2024-02-01T01:02:03" renderer={CountdownRender} />
+                    <div className="seles-end-text">Sale in progress</div>
+                    <Countdown date={countdownDate} 
+                      renderer={CountdownRender} />
                     <div className="targeted-raise-amount">
-                      Targeted Raise For Staking {item.targetedRise}
+                      Maximum Rewards to Early Birds!!!
                     </div>
-                    <div className="max-allocation">
+                    {/* <div className="max-allocation">
                       Maximum Guaranteed Allocation in IDOs
-                    </div>
+                    </div> */}
                   </div>
                 </div>
                 <div className="progress-inner">

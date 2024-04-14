@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const PopUpOverlay = styled.div`
   position: fixed;
@@ -13,21 +13,219 @@ export const PopUpOverlay = styled.div`
   z-index: 9999; /* Ensure this is above other content */
 `;
 
-export const Spinner = styled.div`
-  border: 4px solid rgba(255, 255, 255, 0.2); /* Light grey */
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border-left-color: #2081e2; /* Spinner color */
-  animation: spin 1s ease infinite;
+// export const Spinner = styled.div`
+//   border: 4px solid rgba(255, 255, 255, 0.2); /* Light grey */
+//   width: 36px;
+//   height: 36px;
+//   border-radius: 50%;
+//   border-left-color: #2081e2; /* Spinner color */
+//   animation: spin 1s ease infinite;
 
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+//   @keyframes spin {
+//     0% {
+//       transform: rotate(0deg);
+//     }
+//     100% {
+//       transform: rotate(360deg);
+//     }
+//   }
+// `;
+
+// export const Spinner = styled.div`
+//   display: inline-block;
+//   width: 36px;
+//   height: 36px;
+//   border: 4px solid rgba(255, 255, 255, 0.3); /* Slightly lighter grey for outer ring */
+//   border-radius: 50%;
+//   border-top-color: #2081e2; /* Primary spinner color */
+//   border-bottom-color: #2081e2; /* Primary spinner color */
+//   animation: spin 1s ease-in-out infinite;
+//   position: relative;
+
+//   &:after {
+//     content: "";
+//     position: absolute;
+//     top: 3px;
+//     right: 3px;
+//     bottom: 3px;
+//     left: 3px;
+//     border: 3px solid transparent;
+//     border-radius: 50%;
+//     border-top-color: #49c5b6; /* Secondary spinner color */
+//     border-bottom-color: #49c5b6; /* Secondary spinner color */
+//     animation: spin 0.5s ease-in-out infinite;
+//   }
+
+//   @keyframes spin {
+//     0% {
+//       transform: rotate(0deg);
+//     }
+//     100% {
+//       transform: rotate(360deg);
+//     }
+//   }
+// `;
+
+// export const Spinner = styled.div`
+//   position: relative;
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   background-color: #444; /* Treasure color */
+//   border: 2px solid #ffd700; /* Gold border for treasure */
+  
+//   &:before, &:after {
+//     content: '';
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     width: 20px;
+//     height: 4px;
+//     background: #228b22; /* Dragon's tail color */
+//     border-radius: 2px;
+//     transform-origin: left;
+//     animation: spin 2s linear infinite;
+//   }
+
+//   &:after {
+//     animation-delay: -1s; /* Makes the second part of the tail delay */
+//     background: #32cd32; /* A slightly different color for variety */
+//     width: 15px; /* Shorter than the main part of the tail */
+//   }
+
+//   @keyframes spin {
+//     from {
+//       transform: translate(-50%, -50%) rotate(0deg);
+//     }
+//     to {
+//       transform: translate(-50%, -50%) rotate(360deg);
+//     }
+//   }
+// `;
+
+// export const Spinner = styled.div`
+//   position: relative;
+//   width: 50px;
+//   height: 50px;
+//   border-radius: 50%;
+//   background-color: transparent;
+  
+//   &:before {
+//     content: '';
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     width: 6px;
+//     height: 6px;
+//     background: #900; /* Base of the flame */
+//     border-radius: 50%;
+//     transform: translate(-50%, -50%);
+//     box-shadow:
+//       16px -16px 0 2px #f90, /* Right top flame */
+//       16px 16px 0 2px #f90,  /* Right bottom flame */
+//       -16px 16px 0 2px #f90, /* Left bottom flame */
+//       -16px -16px 0 2px #f90; /* Left top flame */
+//     animation: spin 1s linear infinite;
+//   }
+
+//   @keyframes spin {
+//     0% {
+//       box-shadow:
+//         16px -16px 0 2px #f90,
+//         16px 16px 0 2px #f90,
+//         -16px 16px 0 2px #f90,
+//         -16px -16px 0 2px #f90;
+//     }
+//     25% {
+//       box-shadow:
+//         16px 0 0 2px #fc0,  /* Right flame */
+//         0 16px 0 2px #fc0,  /* Bottom flame */
+//         -16px 0 0 2px #fc0, /* Left flame */
+//         0 -16px 0 2px #fc0; /* Top flame */
+//     }
+//     50% {
+//       box-shadow:
+//         16px -16px 0 2px #f60,
+//         16px 16px 0 2px #f60,
+//         -16px 16px 0 2px #f60,
+//         -16px -16px 0 2px #f60;
+//     }
+//     75% {
+//       box-shadow:
+//         16px 0 0 2px #f30,
+//         0 16px 0 2px #f30,
+//         -16px 0 0 2px #f30,
+//         0 -16px 0 2px #f30;
+//     }
+//     100% {
+//       box-shadow:
+//         16px -16px 0 2px #f90,
+//         16px 16px 0 2px #f90,
+//         -16px 16px 0 2px #f90,
+//         -16px -16px 0 2px #f90;
+//     }
+//   }
+// `;
+
+const flameSpin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+const dragonFlame = keyframes`
+  0%, 100% {
+    box-shadow:
+      20px -20px #f90, /* Right top flame */
+      20px 20px #f90,  /* Right bottom flame */
+      -20px 20px #f90, /* Left bottom flame */
+      -20px -20px #f90; /* Left top flame */
+  }
+  25% {
+    box-shadow:
+      20px 0 #fc0,  /* Right flame */
+      0 20px #fc0,  /* Bottom flame */
+      -20px 0 #fc0, /* Left flame */
+      0 -20px #fc0; /* Top flame */
+  }
+  50% {
+    box-shadow:
+      20px -20px #f60,
+      20px 20px #f60,
+      -20px 20px #f60,
+      -20px -20px #f60;
+  }
+  75% {
+    box-shadow:
+      20px 0 #f30,
+      0 20px #f30,
+      -20px 0 #f30,
+      0 -20px #f30;
+  }
+`;
+
+export const Spinner = styled.div`
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: transparent;
+  animation: ${flameSpin} 2s linear infinite;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    background: #900;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: ${dragonFlame} 2s linear infinite;
   }
 `;
 

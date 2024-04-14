@@ -71,10 +71,10 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
                 {isTxnSuccess && (
                     <>
                         <p>Transaction successful!</p>
-                        <a href={`https://etherscan.io/tx/${txHash}`} target="_blank" rel="noopener noreferrer">
+                        <a href={`https://etherscan.io/tx/${txHash}`} target="_blank" style={{ borderRadius: '20px' }} rel="noopener noreferrer">
                             View on Etherscan
                         </a>
-                        <PopUpButton onClick={onClose}>
+                        <PopUpButton onClick={onClose} style={{ borderRadius: '20px' }}>
                             Close
                         </PopUpButton>
                     </>
@@ -98,7 +98,7 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
                 {(isTxnFailed && isApprovalFailed) && (
                     <>
                         <p>Transaction failed. Please try again.</p>
-                        <PopUpButton onClick={onClose}>
+                        <PopUpButton onClick={onClose} style={{ borderRadius: '20px' }}>
                             Close
                         </PopUpButton>
                     </>
@@ -116,7 +116,7 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
                             placeholder="Enter amount"
                             disabled={isAmountDisabled}
                         />
-                        <PopUpButton onClick={handleButtonClick}>{buttonState}</PopUpButton>
+                        <PopUpButton onClick={handleButtonClick} style={{ borderRadius: '20px' }}>{buttonState}</PopUpButton>
                     </>
                 )}
             </PopUpContent>
