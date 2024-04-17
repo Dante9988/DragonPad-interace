@@ -21,8 +21,8 @@ const Banner = () => {
               Aggregator of Launchpads
             </div>
 
-            <Button href="https://t.me/dragonpad" variant="mint" md isCenter style={{ borderRadius: '20px' }} className="banner-btn">
-              Join Community
+            <Button href="https://docs.google.com/forms/d/e/1FAIpQLSdd8DezhCjlP8yhCz-9RI-AKYKMDxHxGoWSPuh1FUAJkexafQ/viewform?usp=sf_link" variant="mint" md isCenter style={{ borderRadius: '20px' }} className="banner-btn">
+              Submit For IDO
             </Button>
           </div>
         </div>

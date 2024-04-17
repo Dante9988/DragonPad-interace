@@ -13,8 +13,8 @@ const CTA = () => {
           <div className="dsc">
             If you want to get in early into Web 3.0 Projects, this is the place to be!
           </div>
-          <Button variant="mint" md href="#">
-            Join Revolution
+          <Button variant="mint" md href="https://t.me/dragonpad">
+            Join Community
           </Button>
           <CardHover />
         </div>
