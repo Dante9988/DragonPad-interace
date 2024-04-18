@@ -17,10 +17,9 @@ const Banner = () => {
             <h1 className="banner-title">
               DragonPad AI Empowering IDOs
             </h1>
-            <div className="description">
+            <h2 className="description">
               Aggregator of Launchpads
-            </div>
-
+            </h2>
             <Button href="https://docs.google.com/forms/d/e/1FAIpQLSdd8DezhCjlP8yhCz-9RI-AKYKMDxHxGoWSPuh1FUAJkexafQ/viewform?usp=sf_link" variant="mint" md isCenter style={{ borderRadius: '20px' }} className="banner-btn">
               Submit For IDO
             </Button>

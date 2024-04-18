@@ -30,6 +30,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomeOne />} exact />
+
       {/* <Route path="/home-two" element={<HomeTwo />} />
       <Route path="/home-three" element={<HomeThree />} /> */}
       {/* <Route path="/projects-list" element={<ProjectsList />} />

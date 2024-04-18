@@ -20,21 +20,32 @@ const BannerStyleWrapper = styled.section`
     }
 
     .banner-title {
-      margin: 0 0 20px;
-      text-transform: uppercase;
+      font-family: 'VT323', monospace; /* VT323 font with a monospace fallback */
+      color: #ffffff;
+      text-shadow: 
+        0px 0px 6px rgba(255, 215, 0, 0.8), /* Soft glow effect */
+        1px 1px 2px black, /* Soft shadow effect */
+        2px 2px 2px black; /* Another layer of shadow for depth */
+      font-size: 5em; /* Adjust the size as needed */
     }
 
     .description {
+      font-family: 'VT323', monospace; /* VT323 font with a monospace fallback */
       color: #ffffff;
-      font-size: 18px;
-      font-weight: 600;
-      margin: 0 0 40px;
+      font-size: 3em;
+      text-shadow:
+        0px 0px 6px rgba(255, 215, 0, 0.5), /* Soft glow effect */
+        1px 1px 2px black; /* Soft shadow effect */
     }
+  }
+    
   }
 
   .banner-btn {
     margin: 0 auto;
   }
+
+  
 
   @media only screen and (max-width: 991px) {
     padding: 150px 0 200px;
@@ -80,3 +91,6 @@ const BannerStyleWrapper = styled.section`
 `;
 
 export default BannerStyleWrapper;
+
+
+
