@@ -92,7 +92,7 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
                             placeholder="Enter amount"
                             disabled={isAmountDisabled}
                 />*/}
-                        {/* <PopUpButton onClick={handleButtonClick}>Submit</PopUpButton>  */}
+                        <PopUpButton onClick={handleButtonClick}>Submit</PopUpButton> 
                     </>
                 )}
                 {(isTxnFailed && isApprovalFailed) && (

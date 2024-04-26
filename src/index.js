@@ -14,7 +14,7 @@ const eth_mainnet = {
   name: 'Ethereum',
   currency: 'ETH',
   explorerUrl: 'https://etherscan.io',
-  rpcUrl: 'https://cloudflare-eth.com'
+  rpcUrl: 'https://eth-mainnet.g.alchemy.com/v2/z4OmRUoip77ylYYWFon56AYBhY3IoOOR'
 }
 
 const eth_sepolia = {
@@ -31,6 +31,14 @@ const bnb_sepolia = {
   currency: 'BNB',
   explorerUrl: 'https://bscscan.com/',
   rpcUrl: 'https://base-sepolia.g.alchemy.com/v2/7KbVOrGpJ0Fu-91p9jFK904-Sc2mZSbs'
+}
+
+const base_mainnet = {
+  chainId: 8453,
+  name: 'Base',
+  currency: 'ETH',
+  explorerUrl: 'https://basescan.org/',
+  rpcUrl: 'https://base-mainnet.g.alchemy.com/v2/W3blepCxPkOC3E9cWu_t3BoLzc9WmCtQ'
 }
 
 // 3. Create a metadata object
@@ -57,7 +65,7 @@ const ethersConfig = defaultConfig({
 // 5. Create a Web3Modal instance
 export const modal = createWeb3Modal({
   ethersConfig,
-  chains: [eth_mainnet, eth_sepolia, bnb_sepolia],
+  chains: [eth_mainnet],
   projectId,
   enableAnalytics: true // Optional - defaults to your Cloud configuration
 })

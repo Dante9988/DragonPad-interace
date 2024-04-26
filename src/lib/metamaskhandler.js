@@ -45,14 +45,14 @@ export const isAccountConnected = async () =>{
 
 const NETWORK_PARAMS = {
   Ethereum: {
-    chainId: '0xAA36A7', // Hexadecimal for 11155111
-    chainName: 'Sepolia Testnet',
+    chainId: '0x1', // Hexadecimal for 11155111
+    chainName: 'Ethereum Mainnet',
     nativeCurrency: {
         name: 'Ether',
         symbol: 'ETH',
         decimals: 18,
     },
-    rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/yGwUwvfEKQhX1lHKwtbC_WG6z7M9CFph'], // Replace API_KEY with your actual API key
+    rpcUrls: ['https://eth-mainnet.g.alchemy.com/v2/z4OmRUoip77ylYYWFon56AYBhY3IoOOR'], // Replace API_KEY with your actual API key
     blockExplorerUrls: ['https://etherscan.io'],
 },
 BSC: {
