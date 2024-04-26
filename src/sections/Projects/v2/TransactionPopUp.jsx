@@ -107,7 +107,7 @@ const TransactionPopUp = ({ isOpen, isTxnPending, txHash, isTxnFailed, onClose, 
                     <>
                         <StyledSelect value={currency} onChange={(e) => setCurrency(e.target.value)}>
                             <option value="ETH">ETH</option>
-                            <option value="USDT">USDT</option>
+                            {/* <option value="USDT">USDT</option> */}
                         </StyledSelect>
                         <StyledInput
                             type="number"
