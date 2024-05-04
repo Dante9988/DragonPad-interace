@@ -2,11 +2,11 @@ import { Routes, Route } from "react-router-dom";
 import HomeOne from "pages/home-one";
 // import HomeTwo from "pages/home-two";
 // import HomeThree from "pages/home-three";
-// import ProjectsClassic from "pages/projects-classic-1";
-// import ProjectsList from "pages/projects-list";
-// import ProjectsGrid from "pages/projects-grid";
-// import ProjectsCalendar from "pages/projects-calendar";
-// import ProjectDetails from "pages/project-details-1";
+import ProjectsClassic from "pages/projects-classic-1";
+import ProjectsList from "pages/projects-list";
+import ProjectsGrid from "pages/projects-grid";
+import ProjectsCalendar from "pages/projects-calendar";
+import ProjectDetails from "pages/project-details-1";
 // import StakingOne from "pages/staking-1";
 // import StakingTwo from "pages/staking-2";
 // import StakingThree from "pages/staking-3";
@@ -33,12 +33,12 @@ function App() {
 
       {/* <Route path="/home-two" element={<HomeTwo />} />
       <Route path="/home-three" element={<HomeThree />} /> */}
-      {/* <Route path="/projects-list" element={<ProjectsList />} />
+      <Route path="/projects-list" element={<ProjectsList />} />
       <Route path="/projects-classic-1" element={<ProjectsClassic />} />
       <Route path="/projects-grid" element={<ProjectsGrid />} />
       <Route path="/projects-calendar" element={<ProjectsCalendar />} />
       <Route path="/projects-details-1" element={<ProjectDetails />} />
-      <Route path="/staking-1" element={<StakingOne />} />
+      {/* <Route path="/staking-1" element={<StakingOne />} />
       <Route path="/staking-2" element={<StakingTwo />} />
       <Route path="/staking-3" element={<StakingThree />} />
       <Route path="/staking-4" element={<StakingFour />} />

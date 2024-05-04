@@ -10,7 +10,7 @@ const NextProjects = () => {
     <NextProjectsStyleWrapper>
       <div className="container">
         <SectionTitleWrapper>
-          <SectionTitle title="Upcoming IGO" subtitle="Next Projects" />
+          <SectionTitle title="Upcoming IDO" subtitle="Next Projects" />
 
           <Button href="#" variant="outline" sm>
             {" "}

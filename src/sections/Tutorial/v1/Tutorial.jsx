@@ -9,7 +9,7 @@ const Tutorial = () => {
     <TutorialStyleWrapper>
       <div className="container">
         <SectionTitleWrapper>
-          <SectionTitle title="HOW TO PARTICIPATE" subtitle="3 EASY STEPS" />
+          <SectionTitle title="HOW TO BUY DRGN" subtitle="3 EASY STEPS" />
 
           <Button href="#" sm variant="outline">
             {" "}

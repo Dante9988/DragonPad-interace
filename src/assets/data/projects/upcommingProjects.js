@@ -18,22 +18,22 @@ import coinIcon6 from "assets/images/project/project-single-image6.png";
 const data = [
     {
         thumb: projectThumb1,
-        title: "Galaxy War",
-        price: "0.59 BUSD",
-        saleEnd: "08",
+        title: "SKIBIDISOL",
+        price: "0.0003 SOL",
+        saleEnd: "TBA",
         coinIcon: coinIcon1,
         projectDetails: [
             {
                  title: "Min allocation",
-                 text: "0.33 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Max allocation",
-                 text: "900.00 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Targeted raise",
-                 text: "200,000 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Access type",
@@ -65,22 +65,22 @@ const data = [
     },
     {
         thumb: projectThumb2,
-        title: "Super Sidero",
-        price: "0.13 BUSD",
-        saleEnd: "03",
+        title: "MILLIONMEMETOKEN",
+        price: "TBA",
+        saleEnd: "TBA",
         coinIcon: coinIcon2,
         projectDetails: [
             {
                  title: "Min allocation",
-                 text: "0.89 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Max allocation",
-                 text: "300.00 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Targeted raise",
-                 text: "899,900 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Access type",
@@ -112,22 +112,22 @@ const data = [
     },
     {
         thumb: projectThumb3,
-        title: "Meta World",
-        price: "0.33 BUSD",
-        saleEnd: "05",
+        title: "YTKA TON",
+        price: "TBA",
+        saleEnd: "TBA",
         coinIcon: coinIcon3,
         projectDetails: [
             {
                  title: "Min allocation",
-                 text: "2.25 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Max allocation",
-                 text: "1000.00 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Targeted raise",
-                 text: "50,00,000 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Access type",
@@ -159,22 +159,22 @@ const data = [
     },
     {
         thumb: projectThumb4,
-        title: "Fisrt Survivor",
-        price: "0.89 BUSD",
-        saleEnd: "12",
+        title: "MORKUS BRONLI",
+        price: "TBA",
+        saleEnd: "TBA",
         coinIcon: coinIcon4,
         projectDetails: [
             {
                  title: "Min allocation",
-                 text: "0.59 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Max allocation",
-                 text: "399.00 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Targeted raise",
-                 text: "50,0000 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Access type",
@@ -206,22 +206,22 @@ const data = [
     },
     {
         thumb: projectThumb5,
-        title: "Cryowar Two",
-        price: "0.45 BUSD",
-        saleEnd: "14",
+        title: "DERELIKT RWA",
+        price: "TBA",
+        saleEnd: "TBA",
         coinIcon: coinIcon5,
         projectDetails: [
             {
                  title: "Min allocation",
-                 text: "0.66 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Max allocation",
-                 text: "800.00 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Targeted raise",
-                 text: "999,0000 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Access type",
@@ -253,22 +253,22 @@ const data = [
     },
     {
         thumb: projectThumb6,
-        title: "Gaia Everworld",
-        price: "0.13 BUSD",
-        saleEnd: "15",
+        title: "AI DRAGONS NFT",
+        price: "TBA",
+        saleEnd: "TBA",
         coinIcon: coinIcon6,
         projectDetails: [
             {
                  title: "Min allocation",
-                 text: "0.25 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Max allocation",
-                 text: "500.00 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Targeted raise",
-                 text: "869,0000 BUSD"
+                 text: "TBA"
             },
             {
                  title: "Access type",

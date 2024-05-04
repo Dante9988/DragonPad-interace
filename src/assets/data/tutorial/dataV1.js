@@ -5,18 +5,30 @@ import numberImg3 from "assets/images/icons/participate-image3.png"
 const data = [
     {
         icon: numberImg1,
-        title: "Select IDO Pool",
-        text: "Select a pool from a list, if 100% filled check out our Telegram for updates on new pools"
+        title: "Buy from 500 USDT",
+        text: "Package includes $DRGN token at seed price and allocation multipler 1.2X"
     },
     {
         icon: numberImg2,
-        title: "Join a Pool in Trustless way",
-        text: "Join EVM or Solana IDO pools by allocation as low as 10 USDT"
+        title: "Buy from 10000 USDT",
+        text: [
+            "Package includes $DRGN token at seed price and allocation multipler 3.0X",
+            "Private VIP chat of investors and builders",
+            "Weekly report, conferences and weekly team call participation with Founders",
+            "Refer and earn high commissions per user/investor",
+        ]
     },
     {
         icon: numberImg3,
-        title: "Invest early in new projects",
-        text: "Based on your allocation, get your share of a new project when sale is on"
+        title: "Buy from 25000 USDT",
+        text: [
+            "Package includes $DRGN token at seed price and allocation multipler 5.0X",
+            "Private VIP chat of investors and builders",
+            "Weekly report, conferences and weekly team call participation with Founders",
+            "Refer and earn high commissions per user/investor",
+            "Build your team to grow in web3 ecosystem through DragonPad AI",
+        ]
+
     },
 ]
 
