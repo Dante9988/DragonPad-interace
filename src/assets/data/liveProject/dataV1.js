@@ -4,6 +4,7 @@ import projectIcon3 from "assets/images/project/ninga-3.png";
 // import projectIcon4 from "assets/images/project/ninga-4.png";
 
 import coinIcon1 from "assets/images/project/icon-2.png";
+import baseIcon from "assets/images/project/base.png"
 import coinIcon2 from "assets/images/project/icon-1.png";
 import coinIcon3 from "assets/images/project/icon-3.png";
 // import coinIcon4 from "assets/images/project/icon-4.png";
@@ -15,8 +16,8 @@ const data = [
     totalRise: "1,200.00 ( 100% )",
     allocation: "From 1,000.00 USDT/USDC",
     targetedRise: "1,200 GAFI Tokens",
-    saleEnd: 1432560,
-    coinIcon: coinIcon1,
+    saleEnd: 1492560,
+    coinIcon: baseIcon,
     progress: "100%",
   },
   // {

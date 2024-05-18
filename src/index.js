@@ -65,7 +65,7 @@ const ethersConfig = defaultConfig({
 // 5. Create a Web3Modal instance
 export const modal = createWeb3Modal({
   ethersConfig,
-  chains: [eth_mainnet],
+  chains: [base_mainnet],
   projectId,
   enableAnalytics: true // Optional - defaults to your Cloud configuration
 })

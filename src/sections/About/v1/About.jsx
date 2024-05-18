@@ -7,7 +7,7 @@ const About = () => {
     return (
         <AboutStyleWrapper>
             <LiveProject />
-            <Tutorial />
+            {/* <Tutorial /> */}
         </AboutStyleWrapper>
     )
 }

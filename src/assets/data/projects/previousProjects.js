@@ -9,24 +9,26 @@ import coinIcon2 from "assets/images/project/project-single-image2.png";
 import coinIcon3 from "assets/images/project/project-single-image3.png";
 import coinIcon4 from "assets/images/project/project-single-image4.png";
 import coinIcon5 from "assets/images/project/project-single-image5.png";
+import loeIcon from "assets/images/project/legendsofelysiumIcon.png";
 
 const data = [
   {
-    thumb: projectThumb1,
-    title: "KyberDyne",
-    price: "0.59",
-    launchedDate: "08",
-    totalRised: "100,000",
+    thumb: loeIcon,
+    title: "Legends of Elysium",
+    price: "0.05",
+    ATH: "x8.21",
+    launchedDate: "03/29/2024",
+    totalRised: "200,000",
     progress: "100%",
-    coinIcon: coinIcon1,
+    coinIcon: coinIcon2,
   },
   {
     thumb: projectThumb2,
-    title: "Super Sidero",
-    price: "0.13",
-    launchedDate: "03",
-    totalRised: "483,000",
-    progress: "73%",
+    title: "MOONBOOTS DAO",
+    price: "0.125",
+    launchedDate: "05/07/2024",
+    totalRised: "200,000",
+    progress: "100%",
     coinIcon: coinIcon2,
   },
   {

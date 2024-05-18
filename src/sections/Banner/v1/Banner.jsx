@@ -15,14 +15,12 @@ const Banner = () => {
               alt="banner icon"
             />
             <h1 className="banner-title">
-              DragonPad AI Empowering IDOs
+              Aggregator of Launchpads
             </h1>
             <h2 className="description">
-              Aggregator of Launchpads
+              DAO Power to Community
             </h2>
-            <Button href="https://docs.google.com/forms/d/e/1FAIpQLSdd8DezhCjlP8yhCz-9RI-AKYKMDxHxGoWSPuh1FUAJkexafQ/viewform?usp=sf_link" variant="mint" md isCenter style={{ borderRadius: '20px' }} className="banner-btn">
-              Submit For IDO
-            </Button>
+            
           </div>
         </div>
       </BannerStyleWrapper>

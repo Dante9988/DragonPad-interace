@@ -29,7 +29,7 @@ const LiveProject = () => {
   const [isApprovalPending, setIsApprovalPending] = useState(false);
   const [isApprovalSuccess, setIsApprovalSuccess] = useState(false);
   const [isApprovalFailed, setIsApprovalFailed] = useState(false);
-  const [countdownDate, setCountdownDate] = useState(new Date('2024-05-01T01:02:03'));
+  const [countdownDate, setCountdownDate] = useState(new Date('2024-06-01T01:02:03'));
 
   // const [contractABI, setContractABI] = useState(null);
 

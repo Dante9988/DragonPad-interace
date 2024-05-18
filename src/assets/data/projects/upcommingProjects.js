@@ -14,6 +14,9 @@ import coinIcon3 from "assets/images/project/project-single-image3.png";
 import coinIcon4 from "assets/images/project/project-single-image4.png";
 import coinIcon5 from "assets/images/project/project-single-image5.png";
 import coinIcon6 from "assets/images/project/project-single-image6.png";
+import solanaProjectIcon from "assets/images/project/SolanaBiggerLogo.png";
+import baseProjectIcon from "assets/images/project/baseProjectIcon.png";
+
 
 const data = [
     {
@@ -21,7 +24,7 @@ const data = [
         title: "SKIBIDISOL",
         price: "0.0003 SOL",
         saleEnd: "TBA",
-        coinIcon: coinIcon1,
+        coinIcon: solanaProjectIcon,
         projectDetails: [
             {
                  title: "Min allocation",
@@ -68,7 +71,7 @@ const data = [
         title: "MILLIONMEMETOKEN",
         price: "TBA",
         saleEnd: "TBA",
-        coinIcon: coinIcon2,
+        coinIcon: solanaProjectIcon,
         projectDetails: [
             {
                  title: "Min allocation",
@@ -115,7 +118,7 @@ const data = [
         title: "YTKA TON",
         price: "TBA",
         saleEnd: "TBA",
-        coinIcon: coinIcon3,
+        coinIcon: solanaProjectIcon,
         projectDetails: [
             {
                  title: "Min allocation",
@@ -162,7 +165,7 @@ const data = [
         title: "MORKUS BRONLI",
         price: "TBA",
         saleEnd: "TBA",
-        coinIcon: coinIcon4,
+        coinIcon: baseProjectIcon,
         projectDetails: [
             {
                  title: "Min allocation",
@@ -209,7 +212,7 @@ const data = [
         title: "DERELIKT RWA",
         price: "TBA",
         saleEnd: "TBA",
-        coinIcon: coinIcon5,
+        coinIcon: baseProjectIcon,
         projectDetails: [
             {
                  title: "Min allocation",
@@ -256,7 +259,7 @@ const data = [
         title: "AI DRAGONS NFT",
         price: "TBA",
         saleEnd: "TBA",
-        coinIcon: coinIcon6,
+        coinIcon: baseProjectIcon,
         projectDetails: [
             {
                  title: "Min allocation",
